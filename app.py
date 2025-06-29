@@ -50,4 +50,4 @@ def index2():
     else:
         return render_template('recommend.html', data=None)
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',debug=True)
