@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      .fixed-img {
+      height: 400px;
+      width:400;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    </style>
+    <title>Book Recommender System</title>
+  </head>
+  <body style="background-color:#FFE4E1">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">RecoBook </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/recommend">Recommend</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 style="color:black; text-align:center;">RECOMMEND BOOKS</h1>
+                <form action="/recommend_books" method="POST">
+  <div class="form-group">
+    <label for="formGroupExampleInput">Search Book : </label>
+    <input type="text" name='user_input' class="form-control" id="formGroupExampleInput" placeholder="Book Name....">
+  </div>
+
+                    <button type="submit" class="btn btn-outline-dark">Recommend</button>
+</form>
+            </div>
+        </div>
+    </div>
+
+        {% if data %}
+    <div class="container mt-4">
+      <div class="row">
+        {% for i in data %}
+
+
+        <div class="col-md-3 mb-4 d-flex">
+          <div class="card h-100 w-100">
+            <img src="{{ i[4] }}" class="card-img-top fixed-img" alt="Book cover">
+            <div class="card-body">
+              <h5 class="card-title" style="font-size:18px">{{ i[0] }}</h5>
+              <p class="card-text" style="font-size:18px">Author - {{ i[1] }}</p>
+              <p class="card-text" style="font-size:18px">Publisher - {{ i[2] }}</p>
+
+              <p class="card-text" style="font-size:18px">Year - {{ i[3] }}</p>
+            </div>
+          </div>
+        </div>
+
+
+        {% endfor %}
+          </div>
+    </div>
+        {% endif %}
+
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12">
+        {% if data==None %}
+        <h3>Sorry, we couldn't find any results for this book.</h3>
+        <h3>Please check out popular books : <a href="/">Here</a> </h3>
+        {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
